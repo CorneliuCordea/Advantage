@@ -1,0 +1,17 @@
+// Pebble:
+// FIX	BUG1 - TieBreak serve change
+// FIX	BUG2 - Change serve when tie break starts
+// FIX  BUG3 - Change serve after tie break according to who start serving on tie break
+// FIX  CR1 - Show Match Type
+// FIX  CR2 - Only pebble unforced should be categorized as Passive Active+/-
+// CR3 - Undo FUnctionality
+
+// Android:
+// FIX  CR1: Fullscreen not needed anymore
+// CR1 - Undo FUnctionality
+
+// WebApp:
+// CR1 Add stats to each set
+// FIX CR2 Show who is serving
+// BUG1 - Break Points Not shown
+// CR2 - Undo FUnctionality
