@@ -49,7 +49,7 @@ public class HistoryLayout extends DockLayoutPanel {
 							@Override
 							public void onSuccess(List<Point> points) {
 								remove(layout);
-								layout = new LiveLayout(Unit.PCT, match, points);
+								layout = new MatchStatisticsLayout(Unit.PCT, match, points);
 								addSouth(layout, 97);
 							}
 
