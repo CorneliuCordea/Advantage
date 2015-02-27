@@ -130,6 +130,19 @@ public class DatastoreManager {
 		}
 		return points;
 	}
+	
+	public void removeLastPoint(String uuid) {
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Key matchUUID = KeyFactory.createKey(EntityMapper.MATCH_ENTITY_NAME, uuid);
+		Query q = new Query(EntityMapper.POINT_ENTITY_NAME, matchUUID).addSort("index", SortDirection.ASCENDING);
+		PreparedQuery pq = datastore.prepare(q);
+		List<Point> points = new ArrayList<Point>();
+		Key lastPointKey=null;
+		for (Entity result : pq.asIterable()) {
+			lastPointKey=result.getKey();
+		}
+		datastore.delete(lastPointKey);
+	}
 
 	/**
 	 * OK

@@ -26,9 +26,19 @@ public class MatchStatsReceiver {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/add/comment/{user}/{comment}/{uuid}")
-	public String addComment(@PathParam("user") String user, @PathParam("comment") String comment, @PathParam("uuid") String uuid) {
+	public String addComment(@PathParam("user") String user,
+			@PathParam("comment") String comment, @PathParam("uuid") String uuid) {
 		DatastoreManager datastoreManager = new DatastoreManager();
 		datastoreManager.addMatchComment(user, comment, uuid);
+		return "success";
+	}
+
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/remove/last/point/{uuid}")
+	public String removeLastPoint(@PathParam("uuid") String uuid) {
+		DatastoreManager datastoreManager = new DatastoreManager();
+
 		return "success";
 	}
 
@@ -45,9 +55,11 @@ public class MatchStatsReceiver {
 	}
 
 	private boolean validate(Match match) {
-		if (!match.getMatchType().equals(MATCH_TYPE_FRIENDLY) && !match.getMatchType().equals(MATCH_TYPE_COMPETITION))
+		if (!match.getMatchType().equals(MATCH_TYPE_FRIENDLY)
+				&& !match.getMatchType().equals(MATCH_TYPE_COMPETITION))
 			return false;
-		if (!match.getScoringType().equals(MATCH_SCORING_TYPE_1) && !match.getScoringType().equals(MATCH_SCORING_TYPE_2))
+		if (!match.getScoringType().equals(MATCH_SCORING_TYPE_1)
+				&& !match.getScoringType().equals(MATCH_SCORING_TYPE_2))
 			return false;
 		return true;
 	}
@@ -57,7 +69,10 @@ public class MatchStatsReceiver {
 	@Path("/add/point/{uuid}")
 	public String addPoint(@PathParam("uuid") String uuid, Point point) {
 		DatastoreManager datastoreManager = new DatastoreManager();
-		datastoreManager.createNewPoint(point, uuid);
+		if (point.isAce() && point.isDoubleFault())
+			datastoreManager.removeLastPoint(uuid);
+		else
+			datastoreManager.createNewPoint(point, uuid);
 		return "success";
 	}
 }
