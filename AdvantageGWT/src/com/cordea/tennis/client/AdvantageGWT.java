@@ -2,6 +2,8 @@ package com.cordea.tennis.client;
 
 import java.util.List;
 
+import org.apache.tools.ant.types.Assertions.EnabledAssertion;
+
 import com.cordea.tennis.client.layouts.HistoryLayout;
 import com.cordea.tennis.client.layouts.MatchStatisticsLayout;
 import com.cordea.tennis.client.model.Match;
@@ -37,6 +39,9 @@ public class AdvantageGWT implements EntryPoint {
 						mainTabs.add(historyLayout, "History");
 						mainTabs.add(new Label("Not yet available!"), "Statistics");
 						RootLayoutPanel.get().add(mainTabs);
+						RootLayoutPanel.get().setHeight("800px");
+						RootLayoutPanel.get().setWidth("1600px");
+						RootLayoutPanel.get().setStyleName("mainWindow");
 						
 					}
 
