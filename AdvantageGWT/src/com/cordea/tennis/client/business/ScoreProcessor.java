@@ -41,7 +41,7 @@ public class ScoreProcessor {
 		this.match = liveMatch;
 		statistics = new Statistics();
 		matchScore = new MatchScore();
-		if (match.getMatchType().equals("2/3STB"))
+		if (match.getScoringType().equals("2/3STB"))
 			matchScore.setMatchType(2);
 		else
 			matchScore.setMatchType(1);

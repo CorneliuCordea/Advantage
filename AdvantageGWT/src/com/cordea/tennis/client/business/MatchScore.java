@@ -15,7 +15,7 @@ public class MatchScore {
 
 	private Player player1 = new Player();
 	private Player player2 = new Player();
-	int currentSet = 0;
+	public int currentSet = 0;
 	boolean breakPoint = false;
 	int matchType;
 	private int playerServing;
@@ -81,11 +81,11 @@ public class MatchScore {
 	}
 
 	public int getSetType() {
-		if (matchType == MATCH_TYPE_2_OUT_OF_3)
+		if (getMatchType() == MATCH_TYPE_2_OUT_OF_3)
 			return SET_TYPE_NORMAL;
-		else if (matchType == MATCH_TYPE_2_OUT_OF_3_WITH_SUPER_TIE_BREAK && (currentSet == 1 || currentSet == 2))
+		else if (getMatchType() == MATCH_TYPE_2_OUT_OF_3_WITH_SUPER_TIE_BREAK && (currentSet == 0 || currentSet == 1))
 			return SET_TYPE_NORMAL;
-		else if (matchType == MATCH_TYPE_2_OUT_OF_3_WITH_SUPER_TIE_BREAK && currentSet == 3)
+		else if (getMatchType() == MATCH_TYPE_2_OUT_OF_3_WITH_SUPER_TIE_BREAK && currentSet == 2)
 			return SET_TYPE_SUPER_TIE_BREAK;
 		else
 			return SET_TYPE_NORMAL;
