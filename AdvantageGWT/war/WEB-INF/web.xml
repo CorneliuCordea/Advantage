@@ -17,7 +17,7 @@
 
 	<!-- Default page to serve -->
 	<welcome-file-list>
-		<welcome-file>AdvantageGWT.html</welcome-file>
+		<welcome-file>AdvantageGWT.jsp</welcome-file>
 	</welcome-file-list>
 
 	<!-- Jersey REST Services -->

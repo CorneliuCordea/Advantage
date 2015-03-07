@@ -134,7 +134,7 @@ public class DatastoreManager {
 	public void removeLastPoint(String uuid) {
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Key matchUUID = KeyFactory.createKey(EntityMapper.MATCH_ENTITY_NAME, uuid);
-		Query q = new Query(EntityMapper.POINT_ENTITY_NAME, matchUUID).addSort("index", SortDirection.ASCENDING);
+		Query q = new Query(EntityMapper.POINT_ENTITY_NAME, matchUUID).addSort("index", SortDirection.DESCENDING);
 		PreparedQuery pq = datastore.prepare(q);
 		List<Point> points = new ArrayList<Point>();
 		Key lastPointKey=null;
@@ -151,7 +151,7 @@ public class DatastoreManager {
 	 */
 	public List<Match> getAllMatches() {
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Query q = new Query(EntityMapper.MATCH_ENTITY_NAME);
+		Query q = new Query(EntityMapper.MATCH_ENTITY_NAME).addSort("match_time", SortDirection.ASCENDING);
 		PreparedQuery pq = datastore.prepare(q);
 		List<Match> matches = new ArrayList<Match>();
 		for (Entity entityMatch : pq.asIterable()) {
