@@ -84,6 +84,7 @@ public class HistoryLayout extends DockLayoutPanel {
 	}
 
 	private String formatMatch(Match match) {
-		return match.getPebbleUser() + " vs " + match.getOpponent() + " | " + match.getMatchTime();
+		String players=match.getPebbleUser()+"("+match.getPebbleUserTpRating() + ") vs " + match.getOpponent()+"("+match.getOpponentTpRating()+")";
+		return players+" | "+ match.getMatchTime()+" | "+match.getMatchType()+" | "+match.getScoringType();
 	}
 }
